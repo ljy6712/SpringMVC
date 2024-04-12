@@ -13,12 +13,20 @@
     <title>$Title$</title>
   </head>
   <body>
-    <p> <a href="${pageContext.request.contextPath}/offers"> Show current offers</a></p>
-    <p> <a href="${pageContext.request.contextPath}/createoffer"> Add a new offer</a></p>
+    <p> <a href="${pageContext.request.contextPath}/courses"> 학년별 이수 학점 조회</a></p>
+    <p> <a href="${pageContext.request.contextPath}/createoffer"> 수강 신청하기</a></p>
+    <p> <a href="${pageContext.request.contextPath}/course"> 수강 신청 조회</a></p>
 
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-      <a href="javascript:document.getElementById('logout').submit()">Logout</a>
-    </c:if>
+    <c:choose>
+      <c:when test="${pageContext.request.userPrincipal.name != null}">
+        <a href="javascript:document.getElementById('logout').submit()">Logout</a>
+      </c:when>
+      <c:otherwise>
+        <form id="loginForm" action="loginPage.jsp" method="GET">
+          <input type="submit" value="Login">
+        </form>
+      </c:otherwise>
+    </c:choose>
 
     <form id="logout"  action="<c:url value="/logout" />"method="post">
       <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />

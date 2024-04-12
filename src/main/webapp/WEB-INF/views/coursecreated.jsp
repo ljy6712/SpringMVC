@@ -1,9 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: nykim
-  Date: 2024-03-07
-  Time: 오후 4:45
+  Date: 2024-03-11
+  Time: 오후 7:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,8 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-    <c:forEach var="offer" items="${id_offers}" >
-        <p> <c:out value="${offer}"> </c:out> </p>
-    </c:forEach>
+
+${offer.name} 수강신청 완료했습니다. 감사합니다.
+<a href="${pageContext.request.contextPath}/offers"> Click here to view current course  </a>
+
 </body>
 </html>
