@@ -22,17 +22,9 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @GetMapping("/courses")
-    public String showCourses(Model model) {
-        List<Course> courses = courseService.getAllCourses();
-        model.addAttribute("id_courses", courses);
-
-        return "courses";
-    }
-
     @GetMapping("/course")
     public String showCourse(Model model) {
-        List<Course> courses = courseService.getCourse(24, 2);
+        List<Course> courses = courseService.getCourse(2024, 2);
         model.addAttribute("id_courses", courses);
 
         return "courses";
@@ -47,8 +39,8 @@ public class CourseController {
     }
 
     @GetMapping("/courses/credit")
-    public String showCourseTotalCredit(Model model, @RequestParam int year, @RequestParam int semester ) {
-        Map<String, Integer> totalCredit = courseService.getCourseTotalCredit(year, semester);
+    public String showCourseTotalCredit(Model model) {
+        Map<String, Integer> totalCredit = courseService.getCourseTotalCredit();
         int totalCredits = courseService.getTotalCredits();
         model.addAttribute("id_credits", totalCredit);
         model.addAttribute("id_totalCredits", totalCredits);
@@ -59,7 +51,7 @@ public class CourseController {
     @GetMapping("/courses/credit/detail")
     public String showCourseTotalCreditDetail(Model model, @RequestParam int year, @RequestParam int semester ) {
         List<Course> courses = courseService.getCourse(year, semester);
-        model.addAttribute("id_creditsDetail", courses);
+        model.addAttribute("id_courses", courses);
 
         return "courses";
     }

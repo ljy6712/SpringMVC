@@ -16,24 +16,18 @@
 
 </head>
 <body>
-<sf:form method="post" action="${pageContext.request.contextPath}/docreate" modelAttribute="offer">
+<sf:form method="post" action="${pageContext.request.contextPath}/docreate" modelAttribute="course">
     <table class="formtable">
-        <tr>
-            <td class="label"> 수강년도:</td>
-            <td><sf:input class="control" type="number" path="yaer"/>  <br/>
-                <sf:errors path="year" class="error"/>
-            </td>
-        </tr>
-        <tr>
-            <td class="label"> 학기:</td>
-            <td><sf:input class="control" type="number" path="semester"/>  <br/>
-                <sf:errors path="semester" class="error"/>
-            </td>
-        </tr>
         <tr>
             <td class="label"> 교과코드:</td>
             <td><sf:input class="control" type="text" path="code"/>  <br/>
                 <sf:errors path="code" class="error"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="label"> 교과목명:</td>
+            <td><sf:input class="control" type="text" path="subject"/>  <br/>
+                <sf:errors path="subject" class="error"/>
             </td>
         </tr>
         <tr>
@@ -44,13 +38,13 @@
         </tr>
         <tr>
             <td class="label"> 담당교수:</td>
-            <td><sf:textarea class="control" rows="10" cols="10" path="professor"/> <br/>
+            <td><sf:input class="control" type="text" path="professor"/> <br/>
                 <sf:errors path="professor" class="error" />
             </td>
         </tr>
         <tr>
             <td class="label"> 학점:</td>
-            <td><sf:textarea class="control" type="number" path="credit"/> <br/>
+            <td><sf:input class="control" type="number" path="credit"/> <br/>
                 <sf:errors path="credit" class="error" />
             </td>
         </tr>

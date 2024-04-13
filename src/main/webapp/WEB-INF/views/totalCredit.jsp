@@ -13,9 +13,10 @@
 <table border="1">
     <thead>
     <tr>
-        <th>Year</th>
-        <th>Semester</th>
-        <th>Total Credit</th>
+        <th>년도</th>
+        <th>학기</th>
+        <th>취득 학점</th>
+        <th>상세보기</th>
     </tr>
     </thead>
     <tbody>
@@ -31,7 +32,7 @@
         <td><%= year %></td>
         <td><%= semester %></td>
         <td><%= totalCredit %></td>
-        <td><a href="${pageContext.request.contextPath}/detail/year=${year}&semester=${semester}">링크</a></td>
+        <td><a href="${pageContext.request.contextPath}/courses/credit/detail?year=<%= year %>&semester=<%= semester %>">링크</a></td>
     </tr>
     <% } %>
     <%

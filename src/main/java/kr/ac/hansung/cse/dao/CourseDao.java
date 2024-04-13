@@ -1,7 +1,6 @@
 package kr.ac.hansung.cse.dao;
 
 import kr.ac.hansung.cse.model.Course;
-import kr.ac.hansung.cse.model.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -24,12 +23,6 @@ public class CourseDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public int getRowCount() {
-        String sqlStatement= "select count(*) from courses";
-        return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
-
-    }
-    //query and return a single object
     public List<Course> getCourse(int year, int semester) {
 
         String sqlStatement= "select * from courses WHERE year = ? AND semester = ?";
@@ -55,15 +48,13 @@ public class CourseDao {
     }
 
     public int totalCredits(){
-        String sqlStatement= "SELECT SUM(credit) AS total_credit FROM course WHERE year != 24 OR semester != 2";
+        String sqlStatement= "SELECT SUM(credit) AS total_credit FROM courses WHERE year != 2024 OR semester != 2";
         return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
     }
 
-    //query and return multiple objects
-    // cRud method
     public List<Course> getCourses() {
 
-        String sqlStatement= "SELECT FROM course WHERE year != 24 OR semester != 2";
+        String sqlStatement= "SELECT * FROM courses WHERE year != 2024 OR semester != 2";
         return jdbcTemplate.query(sqlStatement, new RowMapper<Course>() {
 
             @Override
@@ -85,13 +76,10 @@ public class CourseDao {
         });
     }
 
-    public Map<String, Integer> getCourseTotalCredit(int year, int semester) {
-        String sqlStatement = "SELECT year, semester, SUM(credit) AS total_credit " +
-                "FROM courses " +
-                "WHERE year = ? AND semester = ? " +
-                "GROUP BY year, semester";
+    public Map<String, Integer> getCourseTotalCredit() {
+        String sqlStatement = "SELECT year, semester, SUM(credit) AS total_credit FROM courses WHERE NOT (year = 2024 AND semester = 2) GROUP BY year, semester";
 
-        List<Map<String, Object>> results = jdbcTemplate.queryForList(sqlStatement, year, semester);
+        List<Map<String, Object>> results = jdbcTemplate.queryForList(sqlStatement);
 
         Map<String, Integer> totalCreditMap = new HashMap<>();
         for (Map<String, Object> row : results) {
@@ -109,9 +97,9 @@ public class CourseDao {
 
         int id= course.getId();
         //year, semester, type, subject, credit, professor, code
-        int year=course.getYear();
+        int year=24;
 
-        int semester=course.getYear();
+        int semester=2;
 
         String subject=course.getSubject();
 

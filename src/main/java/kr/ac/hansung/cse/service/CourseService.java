@@ -18,8 +18,8 @@ public class CourseService {
         return courseDao.getCourses();
     }
 
-    public Map<String, java.lang.Integer> getCourseTotalCredit(int year, int semester){
-        return courseDao.getCourseTotalCredit(year, semester);
+    public Map<String, java.lang.Integer> getCourseTotalCredit(){
+        return courseDao.getCourseTotalCredit();
     }
 
     public List<Course> getCourse(int year, int semester){
